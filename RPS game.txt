@@ -1,0 +1,60 @@
+import random
+
+def computer_choice_method():
+	return random.choice(["Rock" , "Paper" , "Scissors"])
+
+def determine_winner(computer,player):
+	computer = computer.lower()
+	player = player.lower()
+	if computer == player:
+		return "tie"
+	elif (computer == "scissors"and player == "rock") or (computer == "rock" and player == "paper") or (computer == "paper" and player == "scissors"):
+		return "Player"
+	else:
+		return "Computer"
+
+def play_game():
+	rounds = 5
+	player_score = 0
+	computer_score = 0
+	
+	print("Welcome to rock, paper, scissors!")
+	print(f"The game will be a best of {rounds}!")
+
+	for rounds_number in range(1,rounds + 1):
+		print(f"--- Round {rounds_number} ---")
+
+		player_choice = input("Rock, paper, or scissors: ").lower().strip()
+		if player_choice not in ["rock", "paper", "scissors"]:
+			print("Sorry! That was not one of the options!")
+
+		computer_choice = computer_choice_method()
+		print(f"Computer chose {computer_choice}!")
+
+		result = determine_winner(computer_choice,player_choice).lower().strip()
+	
+		if result == "computer":
+			print("---Computer won!---")	
+			computer_score += 1
+		elif result == "player":
+			print("---Player won!---")
+			player_score += 1
+		else:
+			print("---Its a tie!---")
+	
+	print("game over!")
+	print(f"Computer score: {computer_score}")
+	print(f"Player score: {player_score}")
+	if computer_score > player_score:
+		print("Computer won rock paper scissors")
+	elif player_score > computer_score:
+		print("Congratulations, you won!")
+	else:
+		print("The game is a tie!")
+
+while True:
+	play_game()
+	again = input("Would you like to play again? (yes/no)").strip().lower()
+	if again != "yes":
+		print("Thanks for playing! Have a great day!")
+		break
