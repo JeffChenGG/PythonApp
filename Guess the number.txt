@@ -1,0 +1,35 @@
+import random
+
+while True:
+	print("Welcome to the guessing game!")
+	print("Try to guess the number between 1 and 50 inclusive")
+
+	random_number = random.randint(1,50)
+	attempts = 0
+
+	while True:
+		guess_str = input("Place your first guess or print QUIT:").upper().strip()
+
+		if guess_str == "QUIT":
+			print(f"The number was {random_number}, have a good day!")
+			break
+
+		if not guess_str.isdigit():
+			print("Please try again and enter an integer")
+			continue
+
+		guess = int(guess_str)
+		attempts += 1
+
+		if guess < random_number:
+			print("Your guess is too low, guess a higher number!")
+		elif guess > random_number:
+			print("Your guess is too high, guess a lower number!")
+		else:
+			print(f"Good job! You guess correctly! It was {random_number} and you guessed it in {attempts} guesses!")
+			break
+
+	play_again = input("Do you want to play again?(yes/no)").lower().strip()
+	if play_again != "yes":
+		print("Thanks for playing! Have a good day!")
+		break
